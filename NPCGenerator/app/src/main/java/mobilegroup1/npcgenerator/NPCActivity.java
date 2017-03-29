@@ -1,6 +1,8 @@
 package mobilegroup1.npcgenerator;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,6 +52,24 @@ public class NPCActivity extends AppCompatActivity {
 
     public void saveNPC(View view)
     {
-        Toast.makeText(this, "Totally Saved the NPC", Toast.LENGTH_SHORT).show();
+        SQLiteDatabase db = openOrCreateDatabase("NPC_Generator", MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS NPC(Name VARCHAR, Gender VARCHAR, Top VARCHAR, Bottoms VARCHAR);");
+        String name = dude.getFirstName() + " " + dude.getLastName();
+        String top = dude.getColor() + " " + dude.getTop();
+        String query = "SELECT * FROM NPC WHERE Name='" + name + "' AND Gender='" + dude.getGender() + "' AND Top='" + top + "' AND Bottoms='" + dude.getBottom() + "';";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.getCount() > 0) {
+            Toast.makeText(this, "Already saved this NPC!", Toast.LENGTH_SHORT).show();
+            cursor.close();
+        }
+        else {
+            db.execSQL("INSERT INTO NPC (Name, Gender, Top, Bottoms) VALUES ('" + name + "', '" + dude.getGender() + "', '" + top + "', '" + dude.getBottom() + "');");
+            cursor = db.rawQuery("SELECT * FROM NPC WHERE Name='" + name + "' AND Gender='" + dude.getGender() + "' AND Top='" + top + "' AND Bottoms='" + dude.getBottom() + "';", null);
+            if(cursor.getCount() > 0) {
+                cursor.close();
+                Toast.makeText(this, "Totally Saved the NPC", Toast.LENGTH_SHORT).show();
+            }
+        }
+        db.close();
     }
 }

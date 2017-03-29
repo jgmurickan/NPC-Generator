@@ -66,4 +66,17 @@ public class NPC {
         return bottoms[values[5]];
     }
 
+    public String toString()
+    {
+        return "" + values[0] + values[1] + values[2] + values[3] + values[4] + values[5];
+    }
+
+    public void setFromString(String str)
+    {
+        for(int i = 0 ; i < values.length; i++)
+        {
+            values[i] = str.charAt(i);
+        }
+    }
+
 }

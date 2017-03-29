@@ -34,9 +34,10 @@ public class NPCActivity extends AppCompatActivity {
 
         intent = getIntent();
 
-        if(intent.getBooleanExtra("newNPC", true))
-        {
-            dude = new NPC();
+        dude = new NPC();
+
+        if(intent.getBooleanExtra("newNPC", false)) {
+            dude.setFromString(intent.getStringExtra("npcAll"));
         }
 
         populateViews();

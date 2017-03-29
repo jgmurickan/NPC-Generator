@@ -10,6 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mobilegroup1.npcgenerator.MainActivity">
 
+    <ListView
+        android:id="@+id/npcList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <Button
         android:text="@string/generate_random_npc"
         android:layout_width="match_parent"
@@ -17,7 +25,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="generateNPC"
+        android:onClick="generateNewNPC"
         android:id="@+id/generateNPCButton" />
+
+
 
 </RelativeLayout>

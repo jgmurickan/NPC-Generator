@@ -12,18 +12,13 @@ public class SplashscreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
 
         //handle things
-        try {
-            handleSetUp();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        handleSetUp();
     }
 
-    public void handleSetUp() throws InterruptedException {
+    public void handleSetUp() {
         Intent intent = new Intent(this, HubActivity.class);
         //probably should be multithreaded and make the database population here, but we'll handle that later, for now, wait
         Singleton.getInstance();
-        wait(5000);
         startActivity(intent);
     }
 }

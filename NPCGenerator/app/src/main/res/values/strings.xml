@@ -2,4 +2,6 @@
     <string name="app_name">NPC Generator</string>
     <string name="generate_random_npc">Generate Random NPC</string>
     <string name="save_npc">Save NPC</string>
+    <string name="NPCnav">NPC Generator This Way</string>
+    <string name="enemyNav">Not Available in Alpha</string>
 </resources>

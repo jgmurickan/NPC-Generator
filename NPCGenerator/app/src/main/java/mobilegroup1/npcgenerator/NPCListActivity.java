@@ -36,7 +36,7 @@ public class NPCListActivity extends AppCompatActivity {
     }
 
     //Used when generate New NPC is pressed
-    public void generateNewNPC(View view)
+    public void generateNewNPC(View v)
     {
         //go to the NPC Activity
         Intent intent = new Intent(this, NPCActivity.class);

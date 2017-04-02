@@ -1,5 +1,7 @@
 package mobilegroup1.npcgenerator;
 
+import android.util.Log;
+
 import java.util.Random;
 
 /**
@@ -9,8 +11,10 @@ import java.util.Random;
 public class NPC {
 
     Random rand;
-    String[] firstNames = {"Steven", "Robert", "Michael"};
-    String[] lastNames = {"Stevenson", "Robertson", "Michaelson"};
+    String[] firstNames = {"William", "Kennedy", "Gordon", "Eyasu", "Zanta", "Mikaes", "Nicolaas", "Quinten", "Elco", "Iolas",
+                                "Jassin", "Ryfon", "Sizad", "Bodmonlir", "Thomlin", "Ivo", "Oudet", "Hamlyn", "Hobbie", "Arnold"};
+    String[] lastNames = {"Varty", "Ganjoo", "Daerel", "Shathana", "Treehelm", "Deadcutter", "Noboa", "Morillo", "Sainz", "Dulal",
+                                "Tripolis", "Macris", "Gikas", "Spiro", "Montgomery", "Baird", "Toule", "Murphy", "Tlehas", "Jax"};
     String[] colors = {"Red", "Yellow", "Blue", "Orange", "Green", "Purple", "Gold", "Silver", "Black", "White"};
     String[] tops = {"Tunic", "Jerkin", "Waistcoat", "Jacket", "Loose Shirt", "Blouse", "Tatters"};
     String[] bottoms = {"Tights", "Skirt", "Shorts", "Leathers", "Chaps"};
@@ -68,14 +72,15 @@ public class NPC {
 
     public String toString()
     {
-        return "" + values[0] + values[1] + values[2] + values[3] + values[4] + values[5];
+        return "" + values[0] + " " + values[1] + " " + values[2] + " " + values[3] + " " + values[4] + " " + values[5];
     }
 
     public void setFromString(String str)
     {
-        for(int i = 0 ; i < values.length; i++)
+        String[] temp = str.split(" ");
+        for(int i = 0 ; i < temp.length; i++)
         {
-            values[i] = str.charAt(i);
+            values[i] = Integer.parseInt(temp[i]);
         }
     }
 

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class NPCActivity extends AppCompatActivity {
     private TextView npcGender;
     private TextView npcTop;
     private TextView npcBottoms;
+    private boolean newNPC;
     private Button save;
 
     @Override
@@ -36,8 +38,9 @@ public class NPCActivity extends AppCompatActivity {
 
         dude = new NPC();
 
+        newNPC = intent.getBooleanExtra("newNPC", true);
 
-        if(intent.getBooleanExtra("newNPC", false) == false) {
+        if(newNPC == false) {
             dude.setFromString(intent.getStringExtra("npcAll"));
         }
 
@@ -60,7 +63,7 @@ public class NPCActivity extends AppCompatActivity {
         String top = dude.getColor() + " " + dude.getTop();
         String query = "SELECT * FROM NPC WHERE Name='" + name + "' AND Gender='" + dude.getGender() + "' AND Top='" + top + "' AND Bottoms='" + dude.getBottom() + "';";
         Cursor cursor = db.rawQuery(query, null);
-        if(cursor.getCount() > 0) {
+        if(cursor.getCount() > 0 || newNPC == false) {
             Toast.makeText(this, "Already saved this NPC!", Toast.LENGTH_SHORT).show();
             cursor.close();
         }

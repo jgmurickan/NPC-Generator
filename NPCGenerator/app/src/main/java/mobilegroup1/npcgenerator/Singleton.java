@@ -1,5 +1,9 @@
 package mobilegroup1.npcgenerator;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +14,7 @@ public class Singleton {
 
     private static Singleton instance = null;
     private ArrayList<NPC> npcsList;
+    private SQLiteDatabase db;
 
     protected Singleton()
     {
@@ -30,8 +35,18 @@ public class Singleton {
         //this is where the database will be called from
         //currently example
         npcsList = new ArrayList<NPC>();
-        npcsList.add(new NPC());
-        npcsList.add(new NPC());
+        File file = new File("/data/data/mobilegroup1.npcgenerator/databases/NPC_Generator");
+        if(file.exists() && !file.isDirectory()) {
+            db = SQLiteDatabase.openOrCreateDatabase(file, null);
+            db.execSQL("CREATE TABLE IF NOT EXISTS NPC(Name VARCHAR, Gender VARCHAR, Top VARCHAR, Bottoms VARCHAR);");
+            String query = "SELECT * FROM NPC";
+            Cursor cursor = db.rawQuery(query, null);
+            while (cursor.moveToNext()) {
+                npcsList.add(new NPC(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+            }
+            cursor.close();
+            db.close();
+        }
     }
 
     public ArrayList<NPC> getNPCS()

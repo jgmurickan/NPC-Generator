@@ -2,7 +2,10 @@ package mobilegroup1.npcgenerator;
 
 import android.util.Log;
 
+import java.util.Arrays;
 import java.util.Random;
+
+import static org.xmlpull.v1.XmlPullParser.TYPES;
 
 /**
  * Created by herol on 3/14/2017.
@@ -31,6 +34,40 @@ public class NPC {
         values[3] = rand.nextInt(colors.length);
         values[4] = rand.nextInt(tops.length);
         values[5] = rand.nextInt(bottoms.length);
+    }
+
+    public NPC(String name, String gender, String top, String bottom) {
+        String[] names = name.split(" ");
+        String first = names[0];
+        String second = names[1];
+        String[] tps = top.split(" ");
+        String color = tps[0];
+        String tp = tps[1];
+
+        for(int i = 0; i < firstNames.length; i++) {
+            if(firstNames[i].equals(first))
+                values[0] = i;
+        }
+        for(int i = 0; i < lastNames.length; i++) {
+            if(lastNames[i].equals(second))
+                values[1] = i;
+        }
+        if(gender.equals("Male"))
+            values[2] = 1;
+        else
+            values[2] = 0;
+        for(int i = 0; i < colors.length; i++) {
+            if(colors[i].equals(color))
+                values[3] = i;
+        }
+        for(int i = 0; i < tops.length; i++) {
+            if(tops[i].equals(tp))
+                values[4] = i;
+        }
+        for(int i = 0; i < bottoms.length; i++) {
+            if(bottoms[i].equals(bottom))
+                values[5] = i;
+        }
     }
 
     public String getFirstName()

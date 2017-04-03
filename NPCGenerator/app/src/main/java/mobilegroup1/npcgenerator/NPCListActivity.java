@@ -1,11 +1,15 @@
 package mobilegroup1.npcgenerator;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -34,6 +38,27 @@ public class NPCListActivity extends AppCompatActivity {
         ListView theList = (ListView) findViewById(R.id.npcList);
         theList.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.npc_list_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.newNPC:
+                generateNewNPC(null);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     //Used when generate New NPC is pressed
@@ -74,13 +99,13 @@ public class NPCListActivity extends AppCompatActivity {
             }
 
             //set the view up
-            Button btView = (Button) convertView.findViewById(R.id.npcListItem);
+            TextView txView = (TextView) convertView.findViewById(R.id.npcListItem);
 
-            btView.setText(npc.getFirstName() + " " + npc.getLastName());
+            txView.setText(npc.getFirstName() + " " + npc.getLastName());
 
-            btView.setTag(position);
+            txView.setTag(position);
             // Attach the click event handler
-            btView.setOnClickListener(new View.OnClickListener() {
+            txView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = (Integer) view.getTag();

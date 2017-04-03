@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/newNPC"
+        android:title="@string/generate_new_npc"
+        android:icon="@android:drawable/ic_input_add"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
+
+</menu>

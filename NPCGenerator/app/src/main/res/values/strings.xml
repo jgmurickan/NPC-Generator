@@ -4,4 +4,10 @@
     <string name="save_npc">Save NPC</string>
     <string name="NPCnav">NPC Generator This Way</string>
     <string name="enemyNav">Not Available in Alpha</string>
+    <string name="generate_new_npc">Generate New NPC</string>
+    <string name="save_this_npc">Save This NPC</string>
+    <string name="your_previously_saved_npcs">Your Previously Saved NPCs:</string>
+    <string name="delete_npc_fragment">Are you sure you would like to delete this NPC?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

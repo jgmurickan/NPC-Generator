@@ -19,44 +19,57 @@
         android:textSize="18sp"
         android:layout_marginTop="21dp" />
 
+
+
+
     <TextView
         android:text="npcGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:id="@+id/npcGender"
         android:textSize="18sp"
-        android:layout_marginTop="21dp"
-        android:layout_below="@id/npcName" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/npcName"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="npcRace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/npcRace"
+        android:layout_marginTop="25dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/npcGender"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="npcTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:id="@+id/npcTop"
         android:textSize="18sp"
-        android:layout_marginTop="21dp"
-        android:layout_below="@id/npcGender" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/npcRace"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="npcBottoms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:id="@+id/npcBottoms"
         android:textSize="18sp"
-        android:layout_marginTop="21dp"
-        android:layout_below="@id/npcTop" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/npcTop"
+        android:layout_centerHorizontal="true" />
 
-    <Button
+   <!-- <Button
         android:text="@string/save_npc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/saveNPC"
-        android:onClick="saveNPC" />
+        android:onClick="saveNPC" /> -->
 
 
 </RelativeLayout>

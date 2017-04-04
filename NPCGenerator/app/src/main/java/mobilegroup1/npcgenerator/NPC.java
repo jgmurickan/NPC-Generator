@@ -20,7 +20,7 @@ public class NPC {
                                 "Tripolis", "Macris", "Gikas", "Spiro", "Montgomery", "Baird", "Toule", "Murphy", "Tlehas", "Jax"};
     String[] races = {"Human", "Elf", "Dwarf", "Halfling", "Half-Elf", "Drow"};
     String[] colors = {"Red", "Yellow", "Blue", "Orange", "Green", "Purple", "Gold", "Silver", "Black", "White"};
-    String[] tops = {"Tunic", "Jerkin", "Waistcoat", "Jacket", "Loose Shirt", "Blouse", "Tatters"};
+    String[] tops = {"Tunic", "Jerkin", "Waistcoat", "Jacket", "Shirt", "Blouse", "Tatters"};
     String[] bottoms = {"Tights", "Skirt", "Shorts", "Leathers", "Chaps"};
 
     //Get 6 values. one that's missing is gender

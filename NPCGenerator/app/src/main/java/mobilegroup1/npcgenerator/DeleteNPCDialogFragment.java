@@ -35,11 +35,6 @@ public class DeleteNPCDialogFragment extends DialogFragment {
                                 String race = bundle.getString("race", "");
                                 String top = bundle.getString("top", "");
                                 String bottom = bundle.getString("bottom", "");
-                                Log.d("TAG", name);
-                                Log.d("TAG", gender);
-                                Log.d("TAG", race);
-                                Log.d("TAG", top);
-                                Log.d("TAG", bottom);
                                 File file = new File("/data/data/mobilegroup1.npcgenerator/databases/NPC_Generator");
                                 if(file.exists() && !file.isDirectory()) {
                                     SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(file, null);
@@ -48,8 +43,14 @@ public class DeleteNPCDialogFragment extends DialogFragment {
                                     if(num > 0) {
                                         Toast.makeText(getActivity().getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                                     }
-                                    else
-                                        Toast.makeText(getActivity().getApplicationContext(), "Already deleted", Toast.LENGTH_SHORT).show();
+                                    else {
+//                                        String qy = "SELECT * FROM NPC";
+//                                        Cursor cursor = db.rawQuery(qy, null);
+//                                        while(cursor.moveToNext()) {
+//                                            Log.d("TAG", cursor.getString(3));
+//                                        }
+                                        Toast.makeText(getActivity().getApplicationContext(), "NPC already deleted or never saved", Toast.LENGTH_SHORT).show();
+                                    }
                                     db.close();
                                 }
                                 dismiss();

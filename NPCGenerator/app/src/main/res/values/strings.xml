@@ -10,4 +10,6 @@
     <string name="delete_npc_fragment">Are you sure you would like to delete this NPC?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="refresh">Refresh</string>
+    <string name="clear">Clear NPCs</string>
 </resources>

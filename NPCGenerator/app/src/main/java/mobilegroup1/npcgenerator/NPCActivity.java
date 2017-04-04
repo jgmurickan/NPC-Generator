@@ -71,7 +71,14 @@ public class NPCActivity extends AppCompatActivity {
                 saveNPC(null);
                 return true;
             case R.id.deleteNPC:
+                Bundle bundle = new Bundle();
+                bundle.putString("name", dude.getFirstName() + " " + dude.getLastName());
+                bundle.putString("gender", dude.getGender());
+                bundle.putString("race", dude.getRace());
+                bundle.putString("top", dude.getColor() + " " + dude.getTop());
+                bundle.putString("bottom", dude.getBottom());
                 DeleteNPCDialogFragment deleteFrag = new DeleteNPCDialogFragment();
+                deleteFrag.setArguments(bundle);
                 deleteFrag.show(fm, "Deleting");
                 return true;
             default:

@@ -56,6 +56,12 @@ public class NPCListActivity extends AppCompatActivity {
             case R.id.newNPC:
                 generateNewNPC(null);
                 return true;
+            case R.id.refresh:
+                refreshList();
+                return true;
+            case R.id.clear:
+                clearList();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -78,6 +84,20 @@ public class NPCListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void refreshList() {
+        instance = Singleton.getInstance();
+        instance.handleLists();
+        finish();
+        startActivity(getIntent());
+    }
+
+    public void clearList() {
+        instance = Singleton.getInstance();
+        instance.dropList();
+        instance.handleLists();
+        finish();
+        startActivity(getIntent());
+    }
 
     public class NPCAdapter extends ArrayAdapter<NPC>
     {

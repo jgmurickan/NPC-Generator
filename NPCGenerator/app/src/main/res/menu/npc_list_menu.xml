@@ -8,5 +8,17 @@
         android:icon="@android:drawable/ic_input_add"
         android:showAsAction="always"
         tools:ignore="AppCompatResource" />
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/refresh"
+        android:icon="@android:drawable/ic_input_add"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
+    <item
+        android:id="@+id/clear"
+        android:title="@string/clear"
+        android:icon="@android:drawable/ic_input_add"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
 
 </menu>

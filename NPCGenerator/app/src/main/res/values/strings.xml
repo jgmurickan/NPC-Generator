@@ -12,4 +12,5 @@
     <string name="no">No</string>
     <string name="refresh">Refresh</string>
     <string name="clear">Clear NPCs</string>
+    <string name="clear_npc_question">Are you sure? Doing this will delete all of your NPCs from the list.</string>
 </resources>

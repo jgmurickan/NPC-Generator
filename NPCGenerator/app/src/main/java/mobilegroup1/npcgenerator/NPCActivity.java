@@ -113,7 +113,7 @@ public class NPCActivity extends AppCompatActivity {
             cursor = db.rawQuery("SELECT * FROM NPC WHERE Name='" + name + "' AND Gender='" + dude.getGender() + "' AND Race='" + race + "' AND Top='" + top + "' AND Bottoms='" + dude.getBottom() + "';", null);
             if(cursor.getCount() > 0) {
                 cursor.close();
-                Toast.makeText(this, "Totally Saved the NPC", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Your NPC has been saved.", Toast.LENGTH_SHORT).show();
             }
         }
         db.close();

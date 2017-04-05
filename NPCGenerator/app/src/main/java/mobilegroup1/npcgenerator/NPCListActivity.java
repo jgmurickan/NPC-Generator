@@ -85,18 +85,15 @@ public class NPCListActivity extends AppCompatActivity {
     }
 
     public void refreshList() {
-        instance = Singleton.getInstance();
         instance.handleLists();
         finish();
         startActivity(getIntent());
     }
 
     public void clearList() {
-        instance = Singleton.getInstance();
-        instance.dropList();
-        instance.handleLists();
-        finish();
-        startActivity(getIntent());
+        FragmentManager fm = getFragmentManager();
+        ClearNPCDialogFragment clearFrag = new ClearNPCDialogFragment();
+        clearFrag.show(fm, "clearing");
     }
 
     public class NPCAdapter extends ArrayAdapter<NPC>

@@ -21,6 +21,7 @@ public class HubActivity extends AppCompatActivity {
 
     public void navigateToEnemy(View v)
     {
-
+        Intent intent = new Intent(this, EnemyListActivity.class);
+        startActivity(intent);
     }
 }

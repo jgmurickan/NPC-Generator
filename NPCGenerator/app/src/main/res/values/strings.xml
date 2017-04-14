@@ -3,7 +3,7 @@
     <string name="generate_random_npc">Generate Random NPC</string>
     <string name="save_npc">Save NPC</string>
     <string name="NPCnav">NPC Generator This Way</string>
-    <string name="enemyNav">Not Available in Alpha</string>
+    <string name="enemyNav">Enemy Generator This Way</string>
     <string name="generate_new_npc">Generate New NPC</string>
     <string name="save_this_npc">Save This NPC</string>
     <string name="your_previously_saved_npcs">Your Previously Saved NPCs:</string>
@@ -13,4 +13,8 @@
     <string name="refresh">Refresh</string>
     <string name="clear">Clear NPCs</string>
     <string name="clear_npc_question">Are you sure? Doing this will delete all of your NPCs from the list.</string>
+    <string name="your_previously_saved_enemies">Your Previously Saved Enemies:</string>
+    <string name="generate_new_enemy">Generate New Enemy</string>
+    <string name="clearEnemy">Clear Enemies</string>
+    <string name="save_this_enemy">Save This Enemy</string>
 </resources>

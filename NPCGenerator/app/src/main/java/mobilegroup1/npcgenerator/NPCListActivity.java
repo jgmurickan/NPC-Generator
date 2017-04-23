@@ -17,11 +17,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class NPCListActivity extends AppCompatActivity {
 
-    ArrayList<NPC> npcsList;
     Singleton instance;
 
 
@@ -31,6 +32,16 @@ public class NPCListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         instance = Singleton.getInstance();
+
+        TextView previousTitle = (TextView)findViewById(R.id.previousTitle);
+        if(instance.getNPCS().size() == 0)
+        {
+            previousTitle.setText("You have no saved NPCs.");
+        }
+        else
+        {
+            previousTitle.setText("Your previously saved NPCs:");
+        }
 
         //set up the adapter with the list view
         NPCAdapter adapter = new NPCAdapter(this, instance.getNPCS());

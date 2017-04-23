@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/redoNPC"
+        android:title="Make Another NPC"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"
+        android:icon="@android:drawable/ic_popup_sync" />
     <item
         android:id="@+id/saveNPC"
         android:title="@string/save_this_npc"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource"
         android:icon="@android:drawable/ic_menu_save" />
 
     <item
         android:id="@+id/deleteNPC"
         android:title="Delete This NPC"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource"
         android:icon="@android:drawable/ic_delete" />
 

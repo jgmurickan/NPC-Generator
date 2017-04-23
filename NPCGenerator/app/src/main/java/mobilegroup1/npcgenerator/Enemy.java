@@ -11,9 +11,9 @@ public class Enemy {
 
     String[] types = {"Imp", "Sprite", "Bandit", "Goblin", "Orc", "Werewolf",
             "Hippogriff", "Ogre", "Fire Giant", "Treant", "Kraken", "Purple Worm"};
-    String[] weapons = {"None", "Dagger", "Shortsword", "Longsword", "Axe", "Spear", "Tree Branch"};
-    String[] shields = {"None", "Wooden Buckler", "Iron Shield", "Kite Shield", "Tower Shield"};
-    String[] armors = {"None", "Cloth", "Leather", "Chain Shirt", "Plate Mail"};
+    String[] weapons = {"No Weapon", "Dagger", "Shortsword", "Longsword", "Axe", "Spear", "Tree Branch"};
+    String[] shields = {"No Shield", "Wooden Buckler", "Iron Shield", "Kite Shield", "Tower Shield"};
+    String[] armors = {"No Armor", "Cloth", "Leather", "Chain Shirt", "Plate Mail"};
 
     int[] values = new int[15];
     Random rand;
@@ -28,7 +28,6 @@ public class Enemy {
         values[3] = rand.nextInt(shields.length);
         values[4] = rand.nextInt(armors.length);
         determineStats();
-        displayStats();
     }
 
     //calculate a bunch of stats. probably better to keep collapsed
@@ -238,8 +237,41 @@ public class Enemy {
 
     }
 
-    private void displayStats()
+
+    public String getType()
     {
-        //do view things
+        return types[values[0]];
     }
+
+    public int getChallengeRate()
+    {
+        return values[1];
+    }
+
+    public String getWeapon() { return weapons[values[2]]; }
+
+    public String getShield() { return shields[values[3]]; }
+
+    public String getArmor() { return armors[values[4]]; }
+
+    public int getConstitution() { return values[5]; }
+    public int getConAbility() { return ((values[5] - 10) / 2); }
+    public int getStrength() { return values[6]; }
+    public int getStrAbility() { return ((values[6] - 10) / 2); }
+    public int getDexterity() { return values[7]; }
+    public int getDexAbility() { return ((values[7] - 10) / 2); }
+    public int getCharisma() { return values[8]; }
+    public int getChrAbility() { return ((values[8] - 10) / 2); }
+    public int getWisdom() { return values[9]; }
+    public int getWisAbility() { return ((values[9] - 10) / 2); }
+    public int getIntelligence() { return values[10]; }
+    public int getIntAbility() { return ((values[10] - 10) / 2); }
+
+    public int getHealth() { return values[11]; }
+
+    public int getProficiency() { return values[12]; }
+
+    public int getExperience() { return values[13]; }
+
+    public int getArmorClass() { return values[14]; }
 }

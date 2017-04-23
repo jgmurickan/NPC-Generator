@@ -14,8 +14,8 @@ import static org.xmlpull.v1.XmlPullParser.TYPES;
 public class NPC {
 
     Random rand;
-    String[] firstNames = {"William", "Kennedy", "Gordon", "Eyasu", "Zanta", "Mikaes", "Nicolaas", "Quinten", "Elco", "Iolas",
-                                "Jassin", "Ryfon", "Sizad", "Bodmonlir", "Thomlin", "Ivo", "Oudet", "Hamlyn", "Hobbie", "Arnold"};
+    String[] firstNames = {"William", "Kennedy", "Gordon", "Eyasu", "Zanta", "Mikaes", "Nicolaas", "Quin", "Elco", "Iolas",
+                                "Jassin", "Ryfona", "Sizad", "Bodmonlir", "Thomlin", "Eva", "Oudet", "Hamlyn", "Jessie", "Arnold"};
     String[] lastNames = {"Varty", "Ganjoo", "Daerel", "Shathana", "Treehelm", "Deadcutter", "Noboa", "Morillo", "Sainz", "Dulal",
                                 "Tripolis", "Macris", "Gikas", "Spiro", "Montgomery", "Baird", "Toule", "Murphy", "Tlehas", "Jax"};
     String[] races = {"Human", "Elf", "Dwarf", "Halfling", "Half-Elf", "Drow"};

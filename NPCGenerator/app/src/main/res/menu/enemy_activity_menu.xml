@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/saveEnemy"
         android:title="@string/save_this_enemy"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource"
         android:icon="@android:drawable/ic_menu_save" />
 
     <item
         android:id="@+id/deleteEnemy"
         android:title="Delete This Enemy"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource"
         android:icon="@android:drawable/ic_delete" />
 

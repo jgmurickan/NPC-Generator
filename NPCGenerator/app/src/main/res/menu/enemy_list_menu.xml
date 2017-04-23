@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/newEnemy"
         android:title="@string/generate_new_enemy"
         android:icon="@android:drawable/ic_input_add"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/refreshEnemy"
         android:title="@string/refresh"
         android:icon="@android:drawable/ic_menu_rotate"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/clearEnemy"
         android:title="@string/clearEnemy"
         android:icon="@android:drawable/ic_delete"
-        android:showAsAction="always"
+        app:showAsAction="always"
         tools:ignore="AppCompatResource" />
 
 </menu>

@@ -10,4 +10,368 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mobilegroup1.npcgenerator.EnemyActivity">
 
+    <TextView
+        android:text="enemyType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/enemyType"
+        android:textSize="18sp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:text="enemyRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/enemyRate"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/enemyType" />
+
+    <TextView
+        android:text="enemyWeapon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/enemyWeapon"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/enemyRate"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="enemyShield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/enemyShield"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/enemyWeapon"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="enemyArmor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enemyArmor"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/enemyShield"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <TableLayout
+        android:id="@+id/statsTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="71dp">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/baseStatTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Base Stats"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/baseScoreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Base Number"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/abilityScoreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Ability Score"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/constitutionName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/constitution"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/constitutionBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="conBase"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/constitutionAbility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="conAbil"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/strengthName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Strength"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/strengthBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="strBase"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/strengthAbility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="strAbil"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/dexterityName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Dexterity"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/dexterityBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="dexBase"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/dexterityAbility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="dexAbil"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/charismaName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Charisma"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/charismaBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="chrBase"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/charismaAbility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="chrAbil"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/wisdomName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Wisdom"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/wisdomBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="wisBase"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/wisdomAbility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="wisAbil"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/intelligenceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Intelligence"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/intelligenceBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="intBase"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/intelligenceAbility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="intAbil"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <TextView
+        android:text="Armor Class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/armorClass"
+        android:layout_above="@id/statsTable"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16sp" />
+
+    <TextView
+        android:text="Health Points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/armorClass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/hp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:text="Proficiency Bonus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/proficiency"
+        android:layout_above="@id/statsTable"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp" />
+
+    <TextView
+        android:text="Experience Points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/exp"
+        android:layout_above="@id/proficiency"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp" />
+
+
+
+
+
+
 </RelativeLayout>

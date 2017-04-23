@@ -53,6 +53,7 @@ public class NPCActivity extends AppCompatActivity {
         populateViews();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -67,6 +68,9 @@ public class NPCActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentManager fm = getFragmentManager();
         switch (item.getItemId()) {
+            case R.id.redoNPC:
+                makeAnother();
+                return true;
             case R.id.saveNPC:
                 saveNPC(null);
                 return true;
@@ -117,5 +121,12 @@ public class NPCActivity extends AppCompatActivity {
             }
         }
         db.close();
+    }
+
+    public void makeAnother()
+    {
+        dude = new NPC();
+        populateViews();
+        newNPC = true;
     }
 }

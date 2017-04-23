@@ -15,6 +15,7 @@ public class Singleton {
 
     private static Singleton instance = null;
     private ArrayList<NPC> npcsList;
+    private ArrayList<Enemy> enemiesList;
     private SQLiteDatabase db;
     private File file;
 
@@ -35,6 +36,10 @@ public class Singleton {
 
     public void handleLists()
     {
+        //test
+        enemiesList = new ArrayList<Enemy>();
+        enemiesList.add(new Enemy("Goblin", 3));
+        enemiesList.add(new Enemy("Ogre", 6));
         //this is where the database will be called from
         //currently example
         npcsList = new ArrayList<NPC>();
@@ -66,4 +71,5 @@ public class Singleton {
     {
         return npcsList;
     }
+    public ArrayList<Enemy> getEnemies() { return enemiesList; }
 }

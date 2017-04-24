@@ -9,10 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class EnemyActivity extends AppCompatActivity {
 
     private Intent intent;
     private Enemy dude;
+    private Random rand;
 
     //barf
     private TextView enemyType;
@@ -53,8 +56,17 @@ public class EnemyActivity extends AppCompatActivity {
         wisBase = (TextView)findViewById(R.id.wisdomBase);
         intBase = (TextView)findViewById(R.id.intelligenceBase);
 
-        //temp test
-        dude = new Enemy("Purple Worm", 5);
+        intent = getIntent();
+
+        rand = new Random();
+        String[] temp = getResources().getStringArray(R.array.types);
+        dude = new Enemy(temp[rand.nextInt(temp.length)], rand.nextInt(31));
+
+        if(intent.getBooleanExtra("newEnemy", true) == false)
+        {
+            dude.createFromString(intent.getStringExtra("enemyAll"));
+        }
+
 
         populateViews();
 
@@ -88,14 +100,14 @@ public class EnemyActivity extends AppCompatActivity {
     private void populateViews()
     {
         enemyType.setText(dude.getType());
-        enemyRate.setText(dude.getChallengeRate() + "");
+        enemyRate.setText("Challenge Rating: " + dude.getChallengeRate());
         enemyWeapon.setText(dude.getWeapon());
         enemyShield.setText(dude.getShield());
         enemyArmor.setText(dude.getArmor());
-        health.setText(dude.getHealth() + "");
-        armorClass.setText(dude.getArmorClass() + "");
-        experience.setText(dude.getExperience() + "");
-        proficiency.setText(dude.getProficiency() + "");
+        health.setText("Health Points: " + dude.getHealth());
+        armorClass.setText("Armor Class: " + dude.getArmorClass());
+        experience.setText(dude.getExperience() + " Experience Points");
+        proficiency.setText("+" + dude.getProficiency() + " Proficiency Bonus");
         conBase.setText(dude.getConstitution() + "");
         //calculate the ability score
         ((TextView)findViewById(R.id.constitutionAbility)).setText(dude.getConAbility() + "");

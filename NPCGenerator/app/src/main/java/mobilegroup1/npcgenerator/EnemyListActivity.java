@@ -1,5 +1,6 @@
 package mobilegroup1.npcgenerator;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -65,13 +66,15 @@ public class EnemyListActivity extends AppCompatActivity {
     public void generateNewEnemy()
     {
         Intent intent = new Intent(this, EnemyActivity.class);
+        intent.putExtra("newEnemy", true);
         startActivity(intent);
     }
 
     public void generateOldEnemy(Enemy enemy)
     {
         Intent intent = new Intent(this, EnemyActivity.class);
-        intent.putExtra("EnemyAll", enemy.toString());
+        intent.putExtra("newEnemy", false);
+        intent.putExtra("enemyAll", enemy.toString());
         startActivity(intent);
     }
 

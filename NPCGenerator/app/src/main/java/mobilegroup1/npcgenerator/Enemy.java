@@ -10,7 +10,7 @@ import java.util.Random;
 public class Enemy {
 
     String[] types = {"Imp", "Sprite", "Bandit", "Goblin", "Orc", "Werewolf",
-            "Hippogriff", "Ogre", "Fire Giant", "Treant", "Kraken", "Purple Worm"};
+            "Minotaur", "Ogre", "Fire Giant", "Treant", "Dragon", "Nightcrawler"};
     String[] weapons = {"No Weapon", "Dagger", "Shortsword", "Longsword", "Axe", "Spear", "Tree Branch"};
     String[] shields = {"No Shield", "Wooden Buckler", "Iron Shield", "Kite Shield", "Tower Shield"};
     String[] armors = {"No Armor", "Cloth", "Leather", "Chain Shirt", "Plate Mail"};
@@ -274,4 +274,20 @@ public class Enemy {
     public int getExperience() { return values[13]; }
 
     public int getArmorClass() { return values[14]; }
+
+    public String toString()
+    {
+        return "" + values[0] + " " + values[1] + " " + values[2] + " " + values[3] + " " + values[4] + " " + values[5] + " " + values[6]
+                + " " + values[7] + " " + values[8] + " " + values[9] + " " + values[10] + " " + values[11] + " " + values[12]
+                + " " + values[13]  + " " + values[14];
+    }
+
+    public void createFromString(String str)
+    {
+        String[] temp = str.split(" ");
+        for(int i = 0 ; i < temp.length; i++)
+        {
+            values[i] = Integer.parseInt(temp[i]);
+        }
+    }
 }

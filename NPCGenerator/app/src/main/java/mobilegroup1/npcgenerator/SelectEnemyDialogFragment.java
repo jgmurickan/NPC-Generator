@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -27,35 +28,13 @@ public class SelectEnemyDialogFragment extends DialogFragment {
     int typePos = 0;
     int ratePos = 0;
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View view = inflater.inflate(R.layout.type_picker_layout, null);
-
-        builder.setTitle("Select Your Enemy").setView(view)
-            .setPositiveButton("Generate The Enemy",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            moveActivity();
-                        }
-                    })
-                    .setNegativeButton("Cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dismiss();
-                                }
-                            });
-
-        return builder.create();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+
         View view = inflater.inflate(R.layout.type_picker_layout, null);
+
         typePicker = (Spinner) view.findViewById(R.id.typePicker);
         typePicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView,
@@ -78,18 +57,44 @@ public class SelectEnemyDialogFragment extends DialogFragment {
                 return;
             }
         });
+
+        Button generateButton = (Button) view.findViewById(R.id.newButton);
+        generateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveActivity(v);
+            }
+        });
+
+        Button cancelButton = (Button) view.findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
+
         return view;
     }
 
 
 
-    private void moveActivity()
+    public void moveActivity(View view)
     {
-
         Intent temp = new Intent(getActivity(), EnemyActivity.class);
         temp.putExtra("type", (String)typePicker.getItemAtPosition(typePos).toString());
         temp.putExtra("cRate", (String)challengePicker.getItemAtPosition(ratePos).toString());
         startActivity(temp);
         dismiss();
     }
+
+    public void dismissFrag(View view)
+    {
+        dismiss();
+    }
+
+
 }

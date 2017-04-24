@@ -65,15 +65,17 @@ public class EnemyListActivity extends AppCompatActivity {
 
     public void generateNewEnemy()
     {
-        Intent intent = new Intent(this, EnemyActivity.class);
-        intent.putExtra("newEnemy", true);
-        startActivity(intent);
+        FragmentManager fm = getFragmentManager();
+        SelectEnemyDialogFragment sFrag = new SelectEnemyDialogFragment();
+        sFrag.show(fm, "creating");
     }
 
     public void generateOldEnemy(Enemy enemy)
     {
         Intent intent = new Intent(this, EnemyActivity.class);
         intent.putExtra("newEnemy", false);
+        intent.putExtra("type", "Imp");
+        intent.putExtra("cRate", "0");
         intent.putExtra("enemyAll", enemy.toString());
         startActivity(intent);
     }

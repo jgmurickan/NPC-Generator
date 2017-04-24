@@ -10,15 +10,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mobilegroup1.npcgenerator.HubActivity">
 
+    <TextView
+        android:text="@string/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/welcomeView"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <Button
         android:text="@string/NPCnav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="166dp"
+        android:layout_marginTop="17dp"
         android:id="@+id/npcNavButton"
-        android:onClick="navigateToNPC"/>
+        android:onClick="navigateToNPC"
+        android:layout_below="@+id/welcomeView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="@string/enemyNav"
@@ -29,4 +40,6 @@
         android:layout_below="@id/npcNavButton"
         android:layout_centerHorizontal="true"
         android:onClick="navigateToEnemy"/>
+
+
 </RelativeLayout>

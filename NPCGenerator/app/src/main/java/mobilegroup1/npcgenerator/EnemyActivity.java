@@ -58,9 +58,7 @@ public class EnemyActivity extends AppCompatActivity {
 
         intent = getIntent();
 
-        rand = new Random();
-        String[] temp = getResources().getStringArray(R.array.types);
-        dude = new Enemy(temp[rand.nextInt(temp.length)], rand.nextInt(31));
+        dude = new Enemy(intent.getStringExtra("type"), Integer.parseInt(intent.getStringExtra("cRate")));
 
         if(intent.getBooleanExtra("newEnemy", true) == false)
         {

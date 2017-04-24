@@ -19,6 +19,7 @@
     <string name="save_this_enemy">Save This Enemy</string>
     <string name="constitution">Constitution</string>
     <string name="typePrompt">Choose a Monster Type:</string>
+    <string name="welcome_message">Welcome to the NPC Generator! Following the buttons will take you to either the NPC Generator or the Enemy Generator. Have Fun!</string>
 
     <string-array name="types">
         <item>Imp</item>

@@ -24,6 +24,8 @@ import java.util.ArrayList;
 public class NPCListActivity extends AppCompatActivity {
 
     Singleton instance;
+    ListView theList;
+    NPCAdapter adapter;
 
 
     @Override
@@ -44,11 +46,19 @@ public class NPCListActivity extends AppCompatActivity {
         }
 
         //set up the adapter with the list view
-        NPCAdapter adapter = new NPCAdapter(this, instance.getNPCS());
+        adapter = new NPCAdapter(this, instance.getNPCS());
 
-        ListView theList = (ListView) findViewById(R.id.npcList);
+        theList = (ListView) findViewById(R.id.npcList);
         theList.setAdapter(adapter);
 
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        instance.handleLists();
+        adapter.updateNPCList(instance.getNPCS());
     }
 
     @Override
@@ -97,8 +107,7 @@ public class NPCListActivity extends AppCompatActivity {
 
     public void refreshList() {
         instance.handleLists();
-        finish();
-        startActivity(getIntent());
+        adapter.updateNPCList(instance.getNPCS());
     }
 
     public void clearList() {
@@ -110,15 +119,18 @@ public class NPCListActivity extends AppCompatActivity {
     public class NPCAdapter extends ArrayAdapter<NPC>
     {
 
+        ArrayList<NPC> npcList;
+
         public NPCAdapter(Context context, ArrayList<NPC> npcs)
         {
             super(context, 0, npcs);
+            npcList = npcs;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
-            NPC npc = getItem(position);
+            NPC npc = npcList.get(position);
 
             //check if we are reusing
             if(convertView == null)
@@ -138,7 +150,7 @@ public class NPCListActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
-                    NPC npcTemp = getItem(position);
+                    NPC npcTemp = npcList.get(position);
 
                     generateOldNPC(npcTemp);
                 }
@@ -146,6 +158,13 @@ public class NPCListActivity extends AppCompatActivity {
 
 
             return convertView;
+        }
+
+        private void updateNPCList(ArrayList<NPC> newList)
+        {
+            npcList.clear();
+            npcList.addAll(newList);
+            this.notifyDataSetChanged();
         }
     }
 }

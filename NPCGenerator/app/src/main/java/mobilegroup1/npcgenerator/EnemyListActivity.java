@@ -24,6 +24,8 @@ public class EnemyListActivity extends AppCompatActivity {
 
 
     Singleton instance;
+    ListView theList;
+    EnemyAdapter adapter;
 
 
     @Override
@@ -34,21 +36,17 @@ public class EnemyListActivity extends AppCompatActivity {
         instance = Singleton.getInstance();
 
         //set up the adapter with the list view
-        EnemyAdapter adapter = new EnemyAdapter(this, instance.getEnemies());
+        adapter = new EnemyAdapter(this, instance.getEnemies());
         adapter.notifyDataSetChanged();
-        ListView theList = (ListView) findViewById(R.id.enemyList);
+        theList = (ListView) findViewById(R.id.enemyList);
         theList.setAdapter(adapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        EnemyAdapter adapter = new EnemyAdapter(this, instance.getEnemies());
-//        adapter.notifyDataSetChanged();
-//        instance.handleLists();
-        ListView theList = (ListView) findViewById(R.id.enemyList);
-        theList.invalidate();
-        Log.d("TAG", "here");
+        instance.handleLists();
+        adapter.updateEnemyList(instance.getEnemies());
     }
 
 
@@ -115,22 +113,26 @@ public class EnemyListActivity extends AppCompatActivity {
 
     public void refreshList() {
         instance.handleLists();
-        finish();
-        startActivity(getIntent());
+        adapter.updateEnemyList(instance.getEnemies());
+        //finish();
+        //startActivity(getIntent());
     }
 
     public class EnemyAdapter extends ArrayAdapter<Enemy>
     {
 
+        public ArrayList<Enemy> enemyList;
+
         public EnemyAdapter(Context context, ArrayList<Enemy> enemies)
         {
             super(context, 0, enemies);
+            enemyList = enemies;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
-            Enemy enemy = getItem(position);
+            Enemy enemy = enemyList.get(position);
 
             //check if we are reusing
             if(convertView == null)
@@ -156,7 +158,7 @@ public class EnemyListActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
-                    Enemy enemyTemp = getItem(position);
+                    Enemy enemyTemp = enemyList.get(position);
                     Log.d("TAG", "enemy temp = " + enemyTemp.toString());
                     generateOldEnemy(enemyTemp, position);
                 }
@@ -167,7 +169,7 @@ public class EnemyListActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
-                    Enemy enemyTemp = getItem(position);
+                    Enemy enemyTemp = enemyList.get(position);
                     Log.d("TAG", "enemy temp = " + enemyTemp.toString());
                     generateOldEnemy(enemyTemp, position);
                 }
@@ -175,6 +177,13 @@ public class EnemyListActivity extends AppCompatActivity {
 
 
             return convertView;
+        }
+
+        private void updateEnemyList(ArrayList<Enemy> newList)
+        {
+            enemyList.clear();
+            enemyList.addAll(newList);
+            this.notifyDataSetChanged();
         }
     }
 }

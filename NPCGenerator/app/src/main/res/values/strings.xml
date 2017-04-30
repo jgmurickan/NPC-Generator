@@ -8,6 +8,7 @@
     <string name="save_this_npc">Save This NPC</string>
     <string name="your_previously_saved_npcs">Your Previously Saved NPCs:</string>
     <string name="delete_npc_fragment">Are you sure you would like to delete this NPC?</string>
+    <string name="delete_enemy_fragment">Are you sure you would like to delete this Enemy?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="refresh">Refresh</string>

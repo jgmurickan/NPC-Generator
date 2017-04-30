@@ -1,5 +1,7 @@
 package mobilegroup1.npcgenerator;
 
+import android.util.Log;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -275,6 +277,19 @@ public class Enemy {
 
     public int getArmorClass() { return values[14]; }
 
+    public int getIndex(int list, String index) {
+        switch(list) {
+            case 0:
+                return Arrays.asList(types).indexOf(index);
+            case 2:
+                return Arrays.asList(weapons).indexOf(index);
+            case 3:
+                return Arrays.asList(shields).indexOf(index);
+            default:
+                return Arrays.asList(armors).indexOf(index);
+        }
+    }
+
     public String toString()
     {
         return "" + values[0] + " " + values[1] + " " + values[2] + " " + values[3] + " " + values[4] + " " + values[5] + " " + values[6]
@@ -284,10 +299,14 @@ public class Enemy {
 
     public void createFromString(String str)
     {
+        Log.d("TAG", "in createfromstring: " + str);
         String[] temp = str.split(" ");
+        for(String s:temp)
+            Log.d("TAG", s);
         for(int i = 0 ; i < temp.length; i++)
         {
             values[i] = Integer.parseInt(temp[i]);
+            Log.d("TAG", "createfromstring: " + values[i]);
         }
     }
 }

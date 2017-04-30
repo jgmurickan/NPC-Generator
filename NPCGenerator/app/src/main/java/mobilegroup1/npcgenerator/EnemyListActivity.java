@@ -3,8 +3,11 @@ package mobilegroup1.npcgenerator;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,9 +35,20 @@ public class EnemyListActivity extends AppCompatActivity {
 
         //set up the adapter with the list view
         EnemyAdapter adapter = new EnemyAdapter(this, instance.getEnemies());
-
+        adapter.notifyDataSetChanged();
         ListView theList = (ListView) findViewById(R.id.enemyList);
         theList.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        EnemyAdapter adapter = new EnemyAdapter(this, instance.getEnemies());
+//        adapter.notifyDataSetChanged();
+//        instance.handleLists();
+        ListView theList = (ListView) findViewById(R.id.enemyList);
+        theList.invalidate();
+        Log.d("TAG", "here");
     }
 
 
@@ -55,6 +69,7 @@ public class EnemyListActivity extends AppCompatActivity {
                 generateNewEnemy();
                 return true;
             case R.id.refreshEnemy:
+                refreshList();
                 return true;
             case R.id.clearEnemy:
                 return true;
@@ -70,14 +85,38 @@ public class EnemyListActivity extends AppCompatActivity {
         sFrag.show(fm, "creating");
     }
 
-    public void generateOldEnemy(Enemy enemy)
+    public void generateOldEnemy(Enemy enemy, int position)
     {
         Intent intent = new Intent(this, EnemyActivity.class);
         intent.putExtra("newEnemy", false);
-        intent.putExtra("type", "Imp");
-        intent.putExtra("cRate", "0");
-        intent.putExtra("enemyAll", enemy.toString());
+
+        SQLiteDatabase db = openOrCreateDatabase("NPC_Generator", MODE_PRIVATE, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Enemy", null);
+        cursor.moveToPosition(position);
+        String type = enemy.getIndex(0, cursor.getString(0)) + "";
+        String weapon = enemy.getIndex(2, cursor.getString(2)) + "";;
+        String shield = enemy.getIndex(3, cursor.getString(3)) + "";;
+        String armor = enemy.getIndex(4, cursor.getString(4)) + "";;
+        Log.d("TAG", "enemy.createFromString: " + type + " " + cursor.getString(1) + " " + weapon + " " + shield + " " + armor + " " + cursor.getString(5) + " " + cursor.getString(6)
+                        + " " + cursor.getString(7) + " " + cursor.getString(8) + " " + cursor.getString(9) + " " + cursor.getString(10) + " " + cursor.getString(11) + " " + cursor.getString(12)
+                        + " " + cursor.getString(13)  + " " + cursor.getString(14));
+
+        intent.putExtra("type", type);
+        intent.putExtra("cRate", cursor.getString(1));
+
+        intent.putExtra("enemyAll", type + " " + cursor.getString(1) + " " + weapon + " " + shield + " " + armor + " "  + cursor.getString(5) + " " + cursor.getString(6)
+                + " " + cursor.getString(7) + " " + cursor.getString(8) + " " + cursor.getString(9) + " " + cursor.getString(10) + " " + cursor.getString(11) + " " + cursor.getString(12)
+                + " " + cursor.getString(13)  + " " + cursor.getString(14));
+
+        cursor.close();
+        db.close();
         startActivity(intent);
+    }
+
+    public void refreshList() {
+        instance.handleLists();
+        finish();
+        startActivity(getIntent());
     }
 
     public class EnemyAdapter extends ArrayAdapter<Enemy>
@@ -118,8 +157,8 @@ public class EnemyListActivity extends AppCompatActivity {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
                     Enemy enemyTemp = getItem(position);
-
-                    generateOldEnemy(enemyTemp);
+                    Log.d("TAG", "enemy temp = " + enemyTemp.toString());
+                    generateOldEnemy(enemyTemp, position);
                 }
             });
 
@@ -129,8 +168,8 @@ public class EnemyListActivity extends AppCompatActivity {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
                     Enemy enemyTemp = getItem(position);
-
-                    generateOldEnemy(enemyTemp);
+                    Log.d("TAG", "enemy temp = " + enemyTemp.toString());
+                    generateOldEnemy(enemyTemp, position);
                 }
             });
 

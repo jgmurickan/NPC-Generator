@@ -2,12 +2,19 @@ package mobilegroup1.npcgenerator;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -62,6 +69,7 @@ public class EnemyActivity extends AppCompatActivity {
 
         if(intent.getBooleanExtra("newEnemy", true) == false)
         {
+            Log.d("TAG", "getting in if");
             dude.createFromString(intent.getStringExtra("enemyAll"));
         }
 
@@ -85,10 +93,22 @@ public class EnemyActivity extends AppCompatActivity {
         FragmentManager fm = getFragmentManager();
         switch (item.getItemId()) {
             case R.id.saveEnemy:
-
+                saveEnemy();
                 return true;
             case R.id.deleteEnemy:
-
+                Bundle bundle = new Bundle();
+                bundle.putString("type", dude.getType());
+                bundle.putString("rate", dude.getChallengeRate() + "");
+                bundle.putString("weapon", dude.getWeapon());
+                bundle.putString("shield", dude.getShield());
+                bundle.putString("armor", dude.getArmor());
+                bundle.putString("health", dude.getHealth()+"");
+                bundle.putString("armorClass", dude.getArmorClass()+"");
+                bundle.putString("experience", dude.getExperience()+"");
+                bundle.putString("proficiency", dude.getProficiency()+"");
+                DeleteEnemyDialogFragment deleteFrag = new DeleteEnemyDialogFragment();
+                deleteFrag.setArguments(bundle);
+                deleteFrag.show(fm, "Deleting");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -119,5 +139,71 @@ public class EnemyActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.wisdomAbility)).setText(dude.getWisAbility() + "");
         intBase.setText(dude.getIntelligence() + "");
         ((TextView)findViewById(R.id.intelligenceAbility)).setText(dude.getIntAbility() + "");
+    }
+    public void saveEnemy()
+    {
+        SQLiteDatabase db = openOrCreateDatabase("NPC_Generator", MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS Enemy(Type VARCHAR, Rate INTEGER, Weapon VARCHAR, Shield VARCHAR, Armor VARCHAR, " +
+                "Health INTEGER, ArmorClass INTEGER, Experience INTEGER, Proficiency INTEGER, ConBase INTEGER, ConAbility INTEGER, " +
+                "StrBase INTEGER, StrAbility INTEGER, DexBase INTEGER, DexAbility INTEGER, ChrBase INTEGER, ChrAbility INTEGER, WisBase INTEGER, " +
+                "WisAbility INTEGER, IntBase INTEGER, IntAbility INTEGER);");
+
+        String type = dude.getType();
+        String rate = dude.getChallengeRate() + "";
+        String weapon = dude.getWeapon();
+        String shield = dude.getShield();
+        String armor = dude.getArmor();
+        String health = dude.getHealth() + "";
+        String armorClass = dude.getArmorClass() + "";
+        String experience = dude.getExperience() + "";
+        String proficiency = dude.getProficiency() + "";
+        String conbase = dude.getConstitution() + "";
+        String conability = dude.getConAbility() + "";
+        String strbase = dude.getStrength() + "";
+        String strability = dude.getStrAbility() + "";
+        String dexbase = dude.getDexterity() + "";
+        String dexability = dude.getDexAbility() + "";
+        String chrbase = dude.getCharisma() + "";
+        String chrability = dude.getChrAbility() + "";
+        String wisbase = dude.getWisdom() + "";
+        String wisability = dude.getWisAbility() + "";
+        String intbase = dude.getIntelligence() + "";
+        String intability = dude.getIntAbility() + "";
+
+
+        String query = "SELECT * FROM Enemy WHERE Type='" + type + "' AND Rate='" + rate + "' AND Weapon='" + weapon + "' AND Shield='" + shield +
+                "' AND Armor='" + armor + "' AND Health='" + health + "' AND ArmorClass='" + armorClass + "' AND Experience='" + experience +
+                "' AND Proficiency='" + proficiency + "' AND ConBase='" + conbase + "' AND ConAbility='" + conability + "' AND StrBase='" + strbase +
+                "' AND StrAbility='" + strability + "' AND DexBase='" + dexbase + "' AND DexAbility='" + dexability + "' AND ChrBase='" + chrbase +
+                "' AND ChrAbility='" + chrability + "' AND WisBase='" + wisbase + "' AND WisAbility='" + wisability + "' AND IntBase='" + intbase +
+                "' AND IntAbility='" + intability + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.getCount() > 0 || intent.getBooleanExtra("newEnemy", true) == false) {
+            Toast.makeText(this, "Already saved this Enemy!", Toast.LENGTH_SHORT).show();
+            cursor.close();
+        }
+        else {
+
+            db.execSQL("INSERT INTO Enemy (Type, Rate, Weapon, Shield, Armor, Health, ArmorClass, Experience, Proficiency, ConBase, ConAbility, StrBase, StrAbility, " +
+                    "DexBase, DexAbility, ChrBase, ChrAbility, WisBase, WisAbility, IntBase, IntAbility) VALUES ('" + type + "', '" + rate + "', '" + weapon + "', '" +
+                    shield + "', '" + armor + "', '" + health + "', '" + armorClass + "', '" + experience + "', '" + proficiency + "', '" + conbase + "', '" + conability +
+                    "', '" + strbase + "', '" + strability + "', '" + dexbase + "', '" + dexability + "', '" + chrbase + "', '" + chrability + "', '" + wisbase + "', '" +
+                    wisability + "', '" + intbase + "', '" + intability + "');");
+            cursor = db.rawQuery("SELECT * FROM Enemy;", null);
+
+            while(cursor.moveToNext()) {
+                Log.d("TAG", cursor.getString(0) + cursor.getString(1) + cursor.getString(2) + cursor.getString(3));
+            }
+            cursor = db.rawQuery(query, null);
+            if(cursor.getCount() > 0) {
+                cursor.close();
+
+                Toast.makeText(this, "Your Enemy has been saved.", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(this, "Enemy not saved.", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
     }
 }

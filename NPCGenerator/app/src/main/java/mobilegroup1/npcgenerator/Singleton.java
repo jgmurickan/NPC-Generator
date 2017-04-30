@@ -38,8 +38,8 @@ public class Singleton {
     {
         //test
         enemiesList = new ArrayList<Enemy>();
-        enemiesList.add(new Enemy("Goblin", 3));
-        enemiesList.add(new Enemy("Ogre", 6));
+//        enemiesList.add(new Enemy("Goblin", 3));
+//        enemiesList.add(new Enemy("Ogre", 6));
         //this is where the database will be called from
         //currently example
         npcsList = new ArrayList<NPC>();
@@ -55,6 +55,19 @@ public class Singleton {
                 //Log.d("TAG", cursor.getString(3));
                 npcsList.add(new NPC(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4) ));
             }
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS Enemy(Type VARCHAR, Rate INTEGER, Weapon VARCHAR, Shield VARCHAR, Armor VARCHAR, " +
+                    "Health INTEGER, ArmorClass INTEGER, Experience INTEGER, Proficiency INTEGER, ConBase INTEGER, ConAbility INTEGER, " +
+                    "StrBase INTEGER, StrAbility INTEGER, DexBase INTEGER, DexAbility INTEGER, ChrBase INTEGER, ChrAbility INTEGER, WisBase INTEGER, " +
+                    "WisAbility INTEGER, IntBase INTEGER, IntAbility INTEGER);");
+            query = "SELECT * FROM Enemy";
+            Cursor curs = db.rawQuery(query, null);
+            enemiesList.clear();
+            while (curs.moveToNext()) {
+                Log.d("TAG", curs.getString(0) + curs.getString(1) + curs.getString(2) + curs.getString(3));
+                enemiesList.add(new Enemy(curs.getString(0), curs.getInt(1)));
+            }
+
             cursor.close();
             db.close();
         }

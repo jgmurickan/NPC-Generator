@@ -14,6 +14,7 @@
     <string name="refresh">Refresh</string>
     <string name="clear">Clear NPCs</string>
     <string name="clear_npc_question">Are you sure? Doing this will delete all of your NPCs from the list.</string>
+    <string name="clear_enemy_question">Are you sure? Doing this will delete all of your Enemies from the list.</string>
     <string name="your_previously_saved_enemies">Your Previously Saved Enemies:</string>
     <string name="generate_new_enemy">Generate New Enemy</string>
     <string name="clearEnemy">Clear Enemies</string>

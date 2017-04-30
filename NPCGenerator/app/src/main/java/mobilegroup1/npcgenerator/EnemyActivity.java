@@ -69,10 +69,8 @@ public class EnemyActivity extends AppCompatActivity {
 
         if(intent.getBooleanExtra("newEnemy", true) == false)
         {
-            Log.d("TAG", "getting in if");
             dude.createFromString(intent.getStringExtra("enemyAll"));
         }
-
 
         populateViews();
 
@@ -144,9 +142,9 @@ public class EnemyActivity extends AppCompatActivity {
     {
         SQLiteDatabase db = openOrCreateDatabase("NPC_Generator", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Enemy(Type VARCHAR, Rate INTEGER, Weapon VARCHAR, Shield VARCHAR, Armor VARCHAR, " +
-                "Health INTEGER, ArmorClass INTEGER, Experience INTEGER, Proficiency INTEGER, ConBase INTEGER, ConAbility INTEGER, " +
-                "StrBase INTEGER, StrAbility INTEGER, DexBase INTEGER, DexAbility INTEGER, ChrBase INTEGER, ChrAbility INTEGER, WisBase INTEGER, " +
-                "WisAbility INTEGER, IntBase INTEGER, IntAbility INTEGER);");
+                "Health INTEGER, ArmorClass INTEGER, Experience INTEGER, Proficiency INTEGER, ConBase INTEGER, " +
+                "StrBase INTEGER, DexBase INTEGER, ChrBase INTEGER, WisBase INTEGER, " +
+                "IntBase INTEGER);");
 
         String type = dude.getType();
         String rate = dude.getChallengeRate() + "";
@@ -158,25 +156,24 @@ public class EnemyActivity extends AppCompatActivity {
         String experience = dude.getExperience() + "";
         String proficiency = dude.getProficiency() + "";
         String conbase = dude.getConstitution() + "";
-        String conability = dude.getConAbility() + "";
+//        String conability = dude.getConAbility() + "";
         String strbase = dude.getStrength() + "";
-        String strability = dude.getStrAbility() + "";
+//        String strability = dude.getStrAbility() + "";
         String dexbase = dude.getDexterity() + "";
-        String dexability = dude.getDexAbility() + "";
+//        String dexability = dude.getDexAbility() + "";
         String chrbase = dude.getCharisma() + "";
-        String chrability = dude.getChrAbility() + "";
+//        String chrability = dude.getChrAbility() + "";
         String wisbase = dude.getWisdom() + "";
-        String wisability = dude.getWisAbility() + "";
+//        String wisability = dude.getWisAbility() + "";
         String intbase = dude.getIntelligence() + "";
-        String intability = dude.getIntAbility() + "";
+//        String intability = dude.getIntAbility() + "";
 
 
         String query = "SELECT * FROM Enemy WHERE Type='" + type + "' AND Rate='" + rate + "' AND Weapon='" + weapon + "' AND Shield='" + shield +
                 "' AND Armor='" + armor + "' AND Health='" + health + "' AND ArmorClass='" + armorClass + "' AND Experience='" + experience +
-                "' AND Proficiency='" + proficiency + "' AND ConBase='" + conbase + "' AND ConAbility='" + conability + "' AND StrBase='" + strbase +
-                "' AND StrAbility='" + strability + "' AND DexBase='" + dexbase + "' AND DexAbility='" + dexability + "' AND ChrBase='" + chrbase +
-                "' AND ChrAbility='" + chrability + "' AND WisBase='" + wisbase + "' AND WisAbility='" + wisability + "' AND IntBase='" + intbase +
-                "' AND IntAbility='" + intability + "';";
+                "' AND Proficiency='" + proficiency + "' AND ConBase='" + conbase + "' AND StrBase='" + strbase +
+                "' AND DexBase='" + dexbase + "' AND ChrBase='" + chrbase +
+                "' AND WisBase='" + wisbase + "' AND IntBase='" + intbase + "';";
 
         Cursor cursor = db.rawQuery(query, null);
         if(cursor.getCount() > 0 || intent.getBooleanExtra("newEnemy", true) == false) {
@@ -185,16 +182,10 @@ public class EnemyActivity extends AppCompatActivity {
         }
         else {
 
-            db.execSQL("INSERT INTO Enemy (Type, Rate, Weapon, Shield, Armor, Health, ArmorClass, Experience, Proficiency, ConBase, ConAbility, StrBase, StrAbility, " +
-                    "DexBase, DexAbility, ChrBase, ChrAbility, WisBase, WisAbility, IntBase, IntAbility) VALUES ('" + type + "', '" + rate + "', '" + weapon + "', '" +
-                    shield + "', '" + armor + "', '" + health + "', '" + armorClass + "', '" + experience + "', '" + proficiency + "', '" + conbase + "', '" + conability +
-                    "', '" + strbase + "', '" + strability + "', '" + dexbase + "', '" + dexability + "', '" + chrbase + "', '" + chrability + "', '" + wisbase + "', '" +
-                    wisability + "', '" + intbase + "', '" + intability + "');");
-            cursor = db.rawQuery("SELECT * FROM Enemy;", null);
+            db.execSQL("INSERT INTO Enemy (Type, Rate, Weapon, Shield, Armor, Health, ArmorClass, Experience, Proficiency, ConBase, StrBase, DexBase, ChrBase, WisBase, IntBase) VALUES ('" + type + "', '" + rate + "', '" + weapon + "', '" +
+                    shield + "', '" + armor + "', '" + health + "', '" + armorClass + "', '" + experience + "', '" + proficiency + "', '" + conbase  + "', '" + strbase +
+                    "', '" + dexbase + "', '" + chrbase + "', '" + wisbase + "', '" + intbase + "');");
 
-            while(cursor.moveToNext()) {
-                Log.d("TAG", cursor.getString(0) + cursor.getString(1) + cursor.getString(2) + cursor.getString(3));
-            }
             cursor = db.rawQuery(query, null);
             if(cursor.getCount() > 0) {
                 cursor.close();

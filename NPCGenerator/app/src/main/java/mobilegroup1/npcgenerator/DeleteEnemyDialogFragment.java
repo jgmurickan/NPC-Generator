@@ -45,10 +45,8 @@ public class DeleteEnemyDialogFragment extends DialogFragment {
                                 if(file.exists() && !file.isDirectory()) {
                                     SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(file, null);
                                     SQLiteStatement query = db.compileStatement("DELETE FROM Enemy WHERE Type = '" + type + "' AND Rate = '" + rate +
-                                            "' AND Weapon = '" + weapon + "';");
-                                    Cursor c = db.rawQuery("SELECT * FROM Enemy;", null);
-                                    while(c.moveToNext())
-                                        Log.d("TAG", c.getString(0) + c.getString(1) + c.getString(2) + c.getString(3) );
+                                            "' AND Weapon = '" + weapon + "' AND Shield = '" + shield + "' AND Armor = '" + armor + "' AND Health = '" + health +
+                                            "' AND ArmorClass = '" + armorClass + "' AND Experience = '" + experience + "' AND Proficiency = '" + proficiency + "' ;");
                                     int num = query.executeUpdateDelete();
                                     if(num > 0) {
                                         Toast.makeText(getActivity().getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();

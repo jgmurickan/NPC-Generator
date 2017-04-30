@@ -57,14 +57,13 @@ public class Singleton {
             }
 
             db.execSQL("CREATE TABLE IF NOT EXISTS Enemy(Type VARCHAR, Rate INTEGER, Weapon VARCHAR, Shield VARCHAR, Armor VARCHAR, " +
-                    "Health INTEGER, ArmorClass INTEGER, Experience INTEGER, Proficiency INTEGER, ConBase INTEGER, ConAbility INTEGER, " +
-                    "StrBase INTEGER, StrAbility INTEGER, DexBase INTEGER, DexAbility INTEGER, ChrBase INTEGER, ChrAbility INTEGER, WisBase INTEGER, " +
-                    "WisAbility INTEGER, IntBase INTEGER, IntAbility INTEGER);");
+                    "Health INTEGER, ArmorClass INTEGER, Experience INTEGER, Proficiency INTEGER, ConBase INTEGER, StrBase INTEGER, " +
+                    "DexBase INTEGER, ChrBase INTEGER, WisBase INTEGER, IntBase INTEGER);");
             query = "SELECT * FROM Enemy";
             Cursor curs = db.rawQuery(query, null);
             enemiesList.clear();
             while (curs.moveToNext()) {
-                Log.d("TAG", curs.getString(0) + curs.getString(1) + curs.getString(2) + curs.getString(3));
+                Log.d("TAG", "handle lists: " + curs.getString(0) + curs.getString(1) + curs.getString(2) + curs.getString(3));
                 enemiesList.add(new Enemy(curs.getString(0), curs.getInt(1)));
             }
 
@@ -73,10 +72,16 @@ public class Singleton {
         }
     }
 
-    public void dropList() {
+    public void dropList(String list) {
         db = SQLiteDatabase.openOrCreateDatabase(file, null);
-        db.execSQL("DROP TABLE IF EXISTS NPC;");
-        npcsList.clear();
+        if(list.equals("Enemy")) {
+            db.execSQL("DROP TABLE IF EXISTS Enemy");
+            enemiesList.clear();
+        }
+        else if(list.equals("NPC")) {
+            db.execSQL("DROP TABLE IF EXISTS NPC;");
+            npcsList.clear();
+        }
         db.close();
     }
 

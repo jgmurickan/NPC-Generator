@@ -13,21 +13,21 @@ import android.widget.Toast;
 import java.io.File;
 
 /**
- * Created by herol on 4/4/2017.
+ * Created by jobinmurickan on 4/30/2017.
  */
 
-public class ClearNPCDialogFragment extends DialogFragment {
+public class ClearEnemyDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.clear_npc_question)
+        builder.setMessage(R.string.clear_enemy_question)
                 .setPositiveButton(R.string.yes,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Singleton instance = Singleton.getInstance();
-                                instance.dropList("NPC");
+                                instance.dropList("Enemy");
                                 instance.handleLists();
                                 getActivity().finish();
                                 Intent temp = getActivity().getIntent();

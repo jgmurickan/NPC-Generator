@@ -269,7 +269,7 @@ public class Enemy {
     public int getIntelligence() { return values[10]; }
     public int getIntAbility() { return ((values[10] - 10) / 2); }
 
-    public int getHealth() { return values[11]; }
+    public int getHealth() { Log.d("TAG", "health: " + values[11]); return values[11]; }
 
     public int getProficiency() { return values[12]; }
 
@@ -299,14 +299,10 @@ public class Enemy {
 
     public void createFromString(String str)
     {
-        Log.d("TAG", "in createfromstring: " + str);
         String[] temp = str.split(" ");
-        for(String s:temp)
-            Log.d("TAG", s);
         for(int i = 0 ; i < temp.length; i++)
         {
             values[i] = Integer.parseInt(temp[i]);
-            Log.d("TAG", "createfromstring: " + values[i]);
         }
     }
 }

@@ -70,6 +70,7 @@ public class EnemyListActivity extends AppCompatActivity {
                 refreshList();
                 return true;
             case R.id.clearEnemy:
+                clearList();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -95,16 +96,13 @@ public class EnemyListActivity extends AppCompatActivity {
         String weapon = enemy.getIndex(2, cursor.getString(2)) + "";;
         String shield = enemy.getIndex(3, cursor.getString(3)) + "";;
         String armor = enemy.getIndex(4, cursor.getString(4)) + "";;
-        Log.d("TAG", "enemy.createFromString: " + type + " " + cursor.getString(1) + " " + weapon + " " + shield + " " + armor + " " + cursor.getString(5) + " " + cursor.getString(6)
-                        + " " + cursor.getString(7) + " " + cursor.getString(8) + " " + cursor.getString(9) + " " + cursor.getString(10) + " " + cursor.getString(11) + " " + cursor.getString(12)
-                        + " " + cursor.getString(13)  + " " + cursor.getString(14));
 
         intent.putExtra("type", type);
         intent.putExtra("cRate", cursor.getString(1));
 
-        intent.putExtra("enemyAll", type + " " + cursor.getString(1) + " " + weapon + " " + shield + " " + armor + " "  + cursor.getString(5) + " " + cursor.getString(6)
-                + " " + cursor.getString(7) + " " + cursor.getString(8) + " " + cursor.getString(9) + " " + cursor.getString(10) + " " + cursor.getString(11) + " " + cursor.getString(12)
-                + " " + cursor.getString(13)  + " " + cursor.getString(14));
+        intent.putExtra("enemyAll", type + " " + cursor.getString(1) + " " + weapon + " " + shield + " " + armor + " "  + cursor.getString(9) + " " + cursor.getString(10)
+                + " " + cursor.getString(11) + " " + cursor.getString(12) + " " + cursor.getString(13) + " " + cursor.getString(14) + " " + cursor.getString(5) + " " + cursor.getString(8)
+                + " " + cursor.getString(7)  + " " + cursor.getString(6));
 
         cursor.close();
         db.close();
@@ -116,6 +114,12 @@ public class EnemyListActivity extends AppCompatActivity {
         adapter.updateEnemyList(instance.getEnemies());
         //finish();
         //startActivity(getIntent());
+    }
+
+    public void clearList() {
+        FragmentManager fm = getFragmentManager();
+        ClearEnemyDialogFragment clearFrag = new ClearEnemyDialogFragment();
+        clearFrag.show(fm, "clearing");
     }
 
     public class EnemyAdapter extends ArrayAdapter<Enemy>
@@ -159,7 +163,6 @@ public class EnemyListActivity extends AppCompatActivity {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
                     Enemy enemyTemp = enemyList.get(position);
-                    Log.d("TAG", "enemy temp = " + enemyTemp.toString());
                     generateOldEnemy(enemyTemp, position);
                 }
             });
@@ -170,7 +173,6 @@ public class EnemyListActivity extends AppCompatActivity {
                     int position = (Integer) view.getTag();
                     // Access the row position here to get the correct data item
                     Enemy enemyTemp = enemyList.get(position);
-                    Log.d("TAG", "enemy temp = " + enemyTemp.toString());
                     generateOldEnemy(enemyTemp, position);
                 }
             });

@@ -10,12 +10,6 @@
         app:showAsAction="always"
         tools:ignore="AppCompatResource" />
     <item
-        android:id="@+id/refreshEnemy"
-        android:title="@string/refresh"
-        android:icon="@android:drawable/ic_menu_rotate"
-        app:showAsAction="always"
-        tools:ignore="AppCompatResource" />
-    <item
         android:id="@+id/clearEnemy"
         android:title="@string/clearEnemy"
         android:icon="@android:drawable/ic_delete"

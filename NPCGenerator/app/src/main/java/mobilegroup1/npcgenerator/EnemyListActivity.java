@@ -66,9 +66,6 @@ public class EnemyListActivity extends AppCompatActivity {
             case R.id.newEnemy:
                 generateNewEnemy();
                 return true;
-            case R.id.refreshEnemy:
-                refreshList();
-                return true;
             case R.id.clearEnemy:
                 clearList();
                 return true;
@@ -109,12 +106,6 @@ public class EnemyListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void refreshList() {
-        instance.handleLists();
-        adapter.updateEnemyList(instance.getEnemies());
-        //finish();
-        //startActivity(getIntent());
-    }
 
     public void clearList() {
         FragmentManager fm = getFragmentManager();

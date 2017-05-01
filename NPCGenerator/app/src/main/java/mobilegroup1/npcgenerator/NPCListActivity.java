@@ -77,9 +77,6 @@ public class NPCListActivity extends AppCompatActivity {
             case R.id.newNPC:
                 generateNewNPC(null);
                 return true;
-            case R.id.refresh:
-                refreshList();
-                return true;
             case R.id.clear:
                 clearList();
                 return true;
@@ -103,11 +100,6 @@ public class NPCListActivity extends AppCompatActivity {
         intent.putExtra("newNPC", false);
         intent.putExtra("npcAll", npc.toString());
         startActivity(intent);
-    }
-
-    public void refreshList() {
-        instance.handleLists();
-        adapter.updateNPCList(instance.getNPCS());
     }
 
     public void clearList() {

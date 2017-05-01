@@ -55,9 +55,9 @@ public class NPC {
                 values[1] = i;
         }
         if(gender.equals("Male"))
-            values[2] = 1;
-        else
             values[2] = 0;
+        else
+            values[2] = 1;
 
         for(int i = 0; i < races.length; i++)
         {
